@@ -33,7 +33,7 @@
             	<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container box_1620">
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+						<!--<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a> --> <!-- replace with brand logo when done -->
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -44,6 +44,7 @@
 							<ul class="nav navbar-nav menu_nav ml-auto">
 								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
 								<li class="nav-item"><a class="nav-link" href="#aboutsection">About</a></li>
+								<li class="nav-item"><a class="nav-link" href="#experience">Experience and Education</a></li>
 								<!--<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
@@ -59,7 +60,7 @@
 										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
 									</ul>
 								</li> -->
-								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+								<li class="nav-item"><a class="nav-link" href="#contactsection">Contact</a></li>
 							</ul>
 						</div> 
 					</div>
@@ -69,7 +70,7 @@
         <!--================Header Menu Area =================-->
         
         <!--================Home Banner Area =================-->
-        <section class="home_banner_area">
+        <section class="home_banner_area" id="aboutsection">
            	<div class="container box_1620">
            		<div class="banner_inner d-flex align-items-center">
 					<div class="banner_content">
@@ -96,6 +97,8 @@
 										<li><a href="https://medium.com/@gaurav_hoskote"><i class="fa fa-medium"></i></a></li>
 									</ul>
 								</div>
+								<br>
+								<p>I am a software developer by profession. Currently pursuing my master of Science in Computer Science at Arizona State University. I am passionate about subjects like data structures and algorithms, data science and quantum computing.</p>
 							</div>
 						</div>
 					</div>
@@ -105,10 +108,10 @@
         <!--================End Home Banner Area =================-->
         
         <!--================Welcome Area =================-->
-        <section class="welcome_area p_120" id="aboutsection">
+      <!--  <section class="welcome_area p_120" id="aboutsection">
         	<div class="container">
-        		<div class="row welcome_inner">
-					<p>I am a software developer by profession. Currently pursuing my master of Science in Computer Science at Arizona State University. I am passionate about subjects like data structures and algorithms, data science and quantum computing.</p>
+        		<div class="row welcome_inner"> -->
+					<!-- <p>I am a software developer by profession. Currently pursuing my master of Science in Computer Science at Arizona State University. I am passionate about subjects like data structures and algorithms, data science and quantum computing.</p> -->
 					<!-- <div class="col-lg-6">
                         <div class="welcome_text">
                             <h4>About Myself</h4>
@@ -184,13 +187,13 @@
 							</div>
         				</div>
         			</div> -->
-        		</div>
+        <!--		</div>
         	</div>
-        </section>
+        </section> -->
         <!--================End Welcome Area =================-->
         
         <!--================My Tabs Area =================-->
-        <section class="mytabs_area p_120">
+        <section class="mytabs_area p_120" id="experience">
         	<div class="container">
         		<div class="tabs_inner">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -472,8 +475,62 @@
         </section>
         ================End Testimonials Area =================
         -->
-        
-        <!--================Footer Area =================-->
+		<!--================Contact Area =================-->
+		<section class="contact_area p_120" id="contactsection">
+			<div class="container">
+				<h1>Contact</h1><br>
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="contact_info">
+							<div class="info_item">
+								<i class="lnr lnr-home"></i>
+								<h6>Maharashtra, India</h6>
+								<p>Andheri - East, Mumbai 400093.</p>
+							</div>
+							<div class="info_item">
+								<i class="lnr lnr-phone-handset"></i>
+								<h6><a href="#">+91 84520 47639</a></h6>
+								<p></p>
+							</div>
+							<div class="info_item">
+								<i class="lnr lnr-envelope"></i>
+								<h6><a href="#">gaurav.hoskote@gmail.com</a></h6>
+								<p>Reach out to me on Email.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-9">
+						<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+								</div>
+							</div>
+							<div class="col-md-12 text-right">
+								<button type="submit" value="submit" class="btn submit_btn">Send Message</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================Contact Area =================-->
+
+
+
+
+		<!--================Footer Area =================-->
         <footer class="footer_area p_120">
         	<div class="container">
         		<div class="row footer_inner">

@@ -1,0 +1,502 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Simple things you can do to get better at Machine Learning. - Gaurav Hoskote</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Gaurav Hoskote">
+<meta property="og:title" content="Simple things you can do to get better at Machine Learning.">
+
+
+  <link rel="canonical" href="http://0.0.0.0:4000/posts/get-better-at-ml/">
+  <meta property="og:url" content="http://0.0.0.0:4000/posts/get-better-at-ml/">
+
+
+
+  <meta property="og:description" name="description" content="Machine learning is a complex and rapidly evolving field that can be daunting to navigate, even for seasoned professionals. As someone who has taken courses in machine learning and experimented with various techniques, I know firsthand how challenging it can be to improve your skills and gain a deeper understanding of the subject.">
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2023-04-03T00:00:00+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Gaurav Hoskote",
+      "url" : "http://0.0.0.0:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://0.0.0.0:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Gaurav Hoskote Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="57x57" href="http://0.0.0.0:4000/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="60x60" href="http://0.0.0.0:4000/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="72x72" href="http://0.0.0.0:4000/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="76x76" href="http://0.0.0.0:4000/images/apple-touch-icon-76x76.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="114x114" href="http://0.0.0.0:4000/images/apple-touch-icon-114x114.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="120x120" href="http://0.0.0.0:4000/images/apple-touch-icon-120x120.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="144x144" href="http://0.0.0.0:4000/images/apple-touch-icon-144x144.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="152x152" href="http://0.0.0.0:4000/images/apple-touch-icon-152x152.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="180x180" href="http://0.0.0.0:4000/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
+<link rel="manifest" href="http://0.0.0.0:4000/images/manifest.json?v=M44lzPylqQ">
+<link rel="mask-icon" href="http://0.0.0.0:4000/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://0.0.0.0:4000/images/mstile-144x144.png?v=M44lzPylqQ">
+<meta name="msapplication-config" content="http://0.0.0.0:4000/images/browserconfig.xml?v=M44lzPylqQ">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/academicons.css"/>
+
+
+<!-- Support for MatJax -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://0.0.0.0:4000/">Gaurav Hoskote</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/portfolio/">Projects</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/year-archive/">Blog Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/cv/">CV</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://0.0.0.0:4000/images/dp.jpeg" class="author__avatar" alt="Gaurav Hoskote">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Gaurav Hoskote</h3>
+    
+    <p class="author__bio">AI/ML Data Engineer at UOPX | Ex-DHL | Ex-Phonepe | Ex-HSBC.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fa-solid fa-location-dot icon-pad-right" aria-hidden="true"></i>Tempe, AZ, USA.</li>
+      
+      
+      
+      
+        <li><a href="mailto:gaurav.hoskote@gmail.com"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+            
+      
+      
+      
+      
+                              
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/gauravhoskote"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>Github</a></li>
+      
+      
+        <li><a href="https://kaggle.com/gauravhoskote"><i class="fab fa-fw fa-kaggle icon-pad-right" aria-hidden="true"></i>Kaggle</a></li>
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+      
+      
+            
+      
+                  
+                  
+      
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/gauravhoskote"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+      
+        <li><a href="https://medium.com/@gaurav_hoskote"><i class="fab fa-fw fa-medium icon-pad-right" aria-hidden="true"></i>Medium</a></li>
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+        <li><a href="https://www.youtube.com/@gauravhoskote8609"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>YouTube</a></li>
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Simple things you can do to get better at Machine Learning.">
+    <meta itemprop="description" content="Machine learning is a complex and rapidly evolving field that can be daunting to navigate, even for seasoned professionals. As someone who has taken courses in machine learning and experimented with various techniques, I know firsthand how challenging it can be to improve your skills and gain a deeper understanding of the subject.">
+    <meta itemprop="datePublished" content="April 03, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Simple things you can do to get better at Machine Learning.
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2023-04-03T00:00:00+00:00">April 03, 2023</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <!-- This post will show up by default. To disable scheduling of future posts, edit `config.yml` and set `future: false`.  -->
+<p>Machine learning is a complex and rapidly evolving field that can be daunting to navigate, even for seasoned professionals. As someone who has taken courses in machine learning and experimented with various techniques, I know firsthand how challenging it can be to improve your skills and gain a deeper understanding of the subject.</p>
+
+<p>However, over time, I’ve discovered that there are some simple steps you can take to improve your understanding of machine learning and become a more effective practitioner. Through trial and error, I’ve identified a few key strategies that have helped me gain a better grasp of the concepts and techniques involved.</p>
+
+<p>In this blog post, I want to share these strategies with you. Whether you’re just starting out in machine learning or you’re looking to improve your skills, these tips can help you gain a deeper understanding of the subject and become a more effective practitioner. So, without further ado, here are the simple things I did to get a bit better at machine learning.</p>
+
+<h3 id="solve-ml-math-problems-by-hand">Solve ML Math problems by hand:</h3>
+<p>Understanding the math behind machine learning algorithms is crucial to truly mastering them. By solving problems by hand, you’ll gain a deeper understanding of the underlying concepts and be better equipped to apply them in practice. This can also help you identify where you might be making mistakes in your code. Earlier, I believed that I had a firm grasp of the mathematical principles underlying many algorithms, but it wasn’t until I attempted to work through the math myself that I realized my understanding was inadequate/incomplete.</p>
+
+<h3 id="try-to-explain-concepts-to-people">Try to explain concepts to people:</h3>
+<p>Explaining concepts to others is a great way to solidify your own understanding of them. When you can explain a concept in simple terms, it means you truly understand it yourself. Additionally, teaching others can help you identify any gaps in your own knowledge.</p>
+
+<h3 id="code-it-preferably-from-scratch">Code it (preferably from scratch):</h3>
+<p>While using pre-built libraries and frameworks can be convenient, coding machine learning algorithms from scratch can help you gain a deeper understanding of how they work. Example: You can code a simple 2-layer neural network to understand how back-propagation works.</p>
+
+<h3 id="understand-the-concept-in-2-dimensions-and-trust-it-to-work-on-higher-dimensions">Understand the concept in 2 dimensions and trust it to work on higher dimensions:</h3>
+<p>Machine learning algorithms can become incredibly complex in higher dimensions, but understanding how they work in two dimensions is a good foundation for building that understanding. Trusting the concepts you’ve learned in two dimensions to work in higher dimensions can help you avoid getting overwhelmed and improve your overall understanding of the algorithm. For example, take a classification task that requires us to find out if a point lies above or below a line. Once we understand how the algorithm works to classify points in this simple 2D case, we can be confident that it will work for more complex classification tasks in higher dimensions, even though the boundary may be more difficult to visualize.</p>
+
+<h3 id="findconnect-with-people-who-are-passionate-about-it">Find/Connect with people who are passionate about it:</h3>
+<p>Surrounding yourself with others who are passionate about machine learning can help you stay motivated and inspired. Additionally, networking with others in the field can lead to new opportunities and help you stay up-to-date on the latest trends and techniques.</p>
+
+<h3 id="try-to-read-research-papers-on-your-own">Try to read research papers on your own:</h3>
+<p>Reading research papers can help you stay current with the latest developments in machine learning. Additionally, it can help you gain a deeper understanding of the underlying theory behind different algorithms and techniques. If the idea of reading new research papers seems overwhelming, one helpful strategy is to start by reading papers on concepts that you already understand well. This can be a great way to build up your confidence and develop the skills you need to understand more complex research papers over time. As you become more comfortable with the process of reading and interpreting research papers, you can begin to explore more cutting-edge research and stay up-to-date with the latest developments in the field.</p>
+
+<h3 id="using-kaggle">Using Kaggle:</h3>
+<p>Although I haven’t had much time to dedicate to Kaggle due to my Masters program, I’ve found it to be a highly valuable resource for practicing machine learning and applying it to real-world problems. Kaggle offers opportunities to learn from others’ techniques, compete with peers, and receive feedback on your work. I highly recommend exploring this platform to improve your skills.</p>
+
+<p>By incorporating these habits into your machine learning practice, you can improve your understanding of the underlying concepts and become a more effective practitioner.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://0.0.0.0:4000/tags/#ai" class="page__taxonomy-item" rel="tag">AI</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://0.0.0.0:4000/tags/#deep-learning" class="page__taxonomy-item" rel="tag">Deep Learning</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://0.0.0.0:4000/tags/#machine-learning" class="page__taxonomy-item" rel="tag">Machine Learning</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/posts/get-better-at-ml/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/posts/get-better-at-ml/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/posts/get-better-at-ml/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://0.0.0.0:4000/posts/top_ml_courses/" class="pagination--pager" title="Top Machine Learning Courses that are too good to be Free!
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://0.0.0.0:4000/posts/top_ml_courses/" rel="permalink">Top Machine Learning Courses that are too good to be Free!
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  3 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2022-07-26T00:00:00+00:00">July 26, 2022</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>For the past several months I have been trying to master the field of Machine Learning. I am no expert in this field and am still in the process of learning, but in this post I would like to share a few Free Resources available online that helped me a lot on this journey.</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="http://github.com/gauravhoskote"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://0.0.0.0:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2024 Gaurav Hoskote, Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
+  Site last updated 2024-11-27
+</div>
+
+      </footer>
+    </div>
+
+    <script src="http://0.0.0.0:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

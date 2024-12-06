@@ -22,6 +22,8 @@ main:
     
   - title: "CV"
     url: /cv/
-    
+  
+  - title: "Code & Mini Blogs"
+    url: /miniblogs/
   # - title: "Guide"
   #   url: /markdown/

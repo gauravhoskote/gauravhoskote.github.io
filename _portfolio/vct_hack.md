@@ -5,7 +5,7 @@ excerpt: ""
 collection: portfolio
 ---
 
-UPDATE: We have made it to the Top 25 in the Hackathon!
+Out of a competitive pool of over 3,000 participants, we are thrilled to have secured a spot in the Top 25 at the Valorant Champions Tour Hackathon powered by AWS!
 
 You can take a look at the actual project page here: [link](https://devpost.com/software/valorant-teamforge-ai)
 

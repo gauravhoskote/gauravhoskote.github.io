@@ -6,7 +6,7 @@ collection: miniblogs
 ---
 
 
-While working on one of my projects at the University of Phoenix, I encountered an interesting challenge. The project required comparing the embeddings of potentially hundreds of strings. This was done in RAM since using a vector store felt like overkill. To improve latency, I began caching the results using Python’s lru_cache.
+While working on one of my projects at the University of Phoenix, I encountered an interesting challenge. The project required comparing the embeddings of potentially hundreds of strings. This was done in RAM since using a vector store felt like an overkill. To improve latency, I began caching the results using Python’s lru_cache.
 
 Example :
 ```

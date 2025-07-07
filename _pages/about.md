@@ -11,19 +11,15 @@ redirect_from:
 
 About Me
 
-Welcome to my digital hub! 🚀
+Hello and welcome to my digital Space! 🚀
 
-Embarking on an exhilarating journey through the realms of Artificial Intelligence and Machine Learning, I’m currently a Master’s student in Computer Science at Arizona State University. My passion lies in designing systems that make data meaningful, crafting scalable solutions, and leveraging AI to solve real-world problems.
+I am an "AI/ML & Data engineer" currently working  for the University of Phoenix. I mostly work on Generative AI and machine learning related projects. I have roughly 4 years of experience working on several data and backend related roles.
 
-As an AI/ML Data Engineer at the University of Phoenix, I’m immersed in developing cutting-edge recommender systems and predictive models, refining the intersection of user experience and data science. Before this, my role as a Software Engineer at DHL Global Forwarding saw me architect data pipelines that revolutionized internal tool usage and drove actionable insights.
+I started my journey as a software engineer in 2019 during which I worked for companies like HSBC and Phonepe (Indian Payments App). My work mainly revolved around writing backend code in Java SpringBoot and Python. My work on Anomaly Detection at Phonepe got me interested in Data Driven Systems. This is what brought me to the US to pursue a masters in Computer Science. I took courses that were related to Data Science and ML to strengthen my skillset and have been working on similar projects since then. 
 
-My academic journey also intertwined with my teaching passion, where as a Teaching Assistant at W. P. Carey School of Business, I guided students through Machine Learning while crafting Generative AI tools that transformed instructional productivity.
+I have taken efforts to dive deep and understand different aspects of Data Driven System Design like Infra-provisioning using terraform, Web Frameworks like FastAPI/Flask/Django for hosting endpoints, Data pipelines and data engineering, AWS Cloud Services and ML Model Development. Visit [Github](https://github.com/gauravhoskote) to checkout my work!
 
-Before stepping into academia in the U.S., I honed my skills in the fast-paced environments of PhonePe and HSBC in India. From building anomaly detection systems that saved millions to leading engineering initiatives for credit card systems, I thrived on challenges that blended deep technical expertise with leadership. My time at PhonePe also saw me mentoring and hiring talent, contributing to the organization’s growth.
-
-My professional adventure extends to innovative side projects like a Generative AI assistant for competitive gaming and auto-evaluation APIs for learning management systems, showcasing my knack for merging creativity with technology.
-
-I’m driven by a fervent curiosity for cutting-edge technology, particularly Deep Learning, Generative AI, distributed systems, and scalable platforms. Let’s connect, share ideas, and explore new possibilities together! 🌟 Feel free to reach out to me on [Email](https://mail.google.com/mail/u/0/?fs=1&to=gaurav.hoskote@gmail.com&su=HI_GAURAV&body=YOUR_THOUGHTS&bcc=ghoskote@asu.edu&tf=cm) or [Linkedin](https://www.linkedin.com/in/gauravhoskote/)!
+In my free time I like to blog about my learnings and sometimes also conduct workshops for students at the University. If you are someone who is driven by curiosity and passion for cutting-edge technology, particularly Deep Learning, Generative AI, distributed systems, and scalable platforms, let’s connect, share ideas, and explore new possibilities! 🌟 Feel free to reach out to me on [Email](https://mail.google.com/mail/u/0/?fs=1&to=gaurav.hoskote@gmail.com&su=HI_GAURAV&body=YOUR_THOUGHTS&bcc=ghoskote@asu.edu&tf=cm) or [Linkedin](https://www.linkedin.com/in/gauravhoskote/)!
 
 
 

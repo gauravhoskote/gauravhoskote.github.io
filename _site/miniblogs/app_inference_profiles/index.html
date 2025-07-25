@@ -19,7 +19,7 @@
 
 
 
-<title>Teaching experience 1 - Gaurav Hoskote</title>
+<title>Application Inference Profiles - Tracking costs in Amazon Bedrock - Gaurav Hoskote</title>
 
 
 
@@ -29,15 +29,15 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Gaurav Hoskote">
-<meta property="og:title" content="Teaching experience 1">
+<meta property="og:title" content="Application Inference Profiles - Tracking costs in Amazon Bedrock">
 
 
-  <link rel="canonical" href="http://0.0.0.0:4000/teaching/2014-spring-teaching-1">
-  <meta property="og:url" content="http://0.0.0.0:4000/teaching/2014-spring-teaching-1">
+  <link rel="canonical" href="http://0.0.0.0:4000/miniblogs/app_inference_profiles/">
+  <meta property="og:url" content="http://0.0.0.0:4000/miniblogs/app_inference_profiles/">
 
 
 
-  <meta property="og:description" name="description" content="This is a description of a teaching experience. You can use markdown like any other post.">
+  <meta property="og:description" name="description" content="personal description">
 
 
 
@@ -52,7 +52,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2014-01-01T00:00:00+00:00">
+  <meta property="article:published_time" content="2025-07-25T00:00:00+00:00">
 
 
 
@@ -267,33 +267,75 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Teaching experience 1">
-    <meta itemprop="description" content="This is a description of a teaching experience. You can use markdown like any other post.">
-    <meta itemprop="datePublished" content="January 01, 2014">
+    <meta itemprop="headline" content="Application Inference Profiles - Tracking costs in Amazon Bedrock">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="July 25, 2025">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Teaching experience 1
+          <h1 class="page__title" itemprop="headline">Application Inference Profiles - Tracking costs in Amazon Bedrock
 </h1>
           
         
         
         
-          <p> Undergraduate course, <i>University 1, Department</i>, 2014 </p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-07-25T00:00:00+00:00">July 25, 2025</time></p>
             
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p>This is a description of a teaching experience. You can use markdown like any other post.</p>
+        <p>Managing and tracking costs for large language models (LLMs) can be tricky — especially when you’re using the same model across multiple use cases. AWS Bedrock’s Inference Profiles help you address this challenge by giving you a way to tag and organize usage at the profile level, even if the underlying model remains the same.</p>
 
-<h1 id="heading-1">Heading 1</h1>
+<p>This is a short blog on how to use Inference Profiles for cost attribution and tracking in your LLM-powered workloads using Terraform.</p>
 
-<h1 id="heading-2">Heading 2</h1>
+<p>Creating a Bedrock Inference Profile with Terraform
+You can define an inference profile that wraps a Bedrock model using the following Terraform resource:</p>
 
-<h1 id="heading-3">Heading 3</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>resource "aws_bedrock_inference_profile" "my_inference_profile" {
+  name        = "sample-usecase-profile"
+  description = "Cost tracking for Use Case #1"
+
+  model_source {
+    copy_from = "model_arn"  # Replace this with the ARN of the foundation model
+  }
+
+  tags = {
+    created_by = "gaurav.hoskote@gmail.com"
+    module_key = "sample_module_key"
+    application_key = "sample_application_key"
+  }
+}
+</code></pre></div></div>
+
+<p>Exporting the Inference Profile ARN
+To use this profile in your applications, you’ll want to output the ARN:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>output "inference_profile_arn" {
+  value = aws_bedrock_inference_profile.my_inference_profile.arn
+}
+</code></pre></div></div>
+
+<p>Using the Inference Profiles in Code
+Once you’ve created the inference profile and have the ARN, you can use it in your Python code as a drop-in replacement for the model ARN.</p>
+
+<p>Refer to below code sample that can be used for Langchain bedrock models:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from langchain_aws import ChatBedrockConverse
+
+foundation_model = "&lt;your-inference-profile-arn&gt;"
+
+llm = ChatBedrockConverse(
+    model=foundation_model,
+    temperature=0,
+    max_tokens=None,
+    region_name='us-east-1'
+)
+</code></pre></div></div>
+
+<p>A simple yet effective way to track costs!</p>
 
 
         
@@ -317,11 +359,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/teaching/2014-spring-teaching-1" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/miniblogs/app_inference_profiles/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/teaching/2014-spring-teaching-1" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/miniblogs/app_inference_profiles/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/teaching/2014-spring-teaching-1" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/miniblogs/app_inference_profiles/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -329,11 +371,11 @@
 
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/" class="pagination--pager" title="Structuring LLM Outputs
+">Previous</a>
     
     
-      <a href="http://0.0.0.0:4000/teaching/2015-spring-teaching-1" class="pagination--pager" title="Teaching experience 2
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 

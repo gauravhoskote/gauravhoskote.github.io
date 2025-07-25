@@ -1,0 +1,485 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Structuring LLM Outputs - Gaurav Hoskote</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Gaurav Hoskote">
+<meta property="og:title" content="Structuring LLM Outputs">
+
+
+  <link rel="canonical" href="http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/">
+  <meta property="og:url" content="http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/">
+
+
+
+  <meta property="og:description" name="description" content="personal description">
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-05-01T00:00:00+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Gaurav Hoskote",
+      "url" : "http://0.0.0.0:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://0.0.0.0:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Gaurav Hoskote Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="57x57" href="http://0.0.0.0:4000/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="60x60" href="http://0.0.0.0:4000/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="72x72" href="http://0.0.0.0:4000/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="76x76" href="http://0.0.0.0:4000/images/apple-touch-icon-76x76.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="114x114" href="http://0.0.0.0:4000/images/apple-touch-icon-114x114.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="120x120" href="http://0.0.0.0:4000/images/apple-touch-icon-120x120.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="144x144" href="http://0.0.0.0:4000/images/apple-touch-icon-144x144.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="152x152" href="http://0.0.0.0:4000/images/apple-touch-icon-152x152.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="180x180" href="http://0.0.0.0:4000/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
+<link rel="manifest" href="http://0.0.0.0:4000/images/manifest.json?v=M44lzPylqQ">
+<link rel="mask-icon" href="http://0.0.0.0:4000/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://0.0.0.0:4000/images/mstile-144x144.png?v=M44lzPylqQ">
+<meta name="msapplication-config" content="http://0.0.0.0:4000/images/browserconfig.xml?v=M44lzPylqQ">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/academicons.css"/>
+
+
+<!-- Support for MatJax -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://0.0.0.0:4000/">Gaurav Hoskote</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/portfolio/">Projects</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/year-archive/">Blog Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/cv/">CV</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/miniblogs/">Code & Mini Blogs</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://0.0.0.0:4000/images/dp.jpeg" class="author__avatar" alt="Gaurav Hoskote">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Gaurav Hoskote</h3>
+    
+    <p class="author__bio">AI/ML Data Engineer at UOPX | Ex-DHL | Ex-Phonepe | Ex-HSBC.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fa-solid fa-location-dot icon-pad-right" aria-hidden="true"></i>Tempe, AZ, USA.</li>
+      
+      
+      
+      
+        <li><a href="mailto:gaurav.hoskote@gmail.com"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+            
+      
+      
+      
+      
+                              
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/gauravhoskote"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>Github</a></li>
+      
+      
+        <li><a href="https://kaggle.com/gauravhoskote"><i class="fab fa-fw fa-kaggle icon-pad-right" aria-hidden="true"></i>Kaggle</a></li>
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+      
+      
+            
+      
+                  
+                  
+      
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/gauravhoskote"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+      
+        <li><a href="https://medium.com/@gaurav_hoskote"><i class="fab fa-fw fa-medium icon-pad-right" aria-hidden="true"></i>Medium</a></li>
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+        <li><a href="https://www.youtube.com/@gauravhoskote8609"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>YouTube</a></li>
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Structuring LLM Outputs">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="May 01, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Structuring LLM Outputs
+</h1>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-05-01T00:00:00+00:00">May 01, 2025</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <h2 id="getting-structured-output-from-llms-using-langchain--bedrock">Getting Structured Output from LLMs using LangChain + Bedrock</h2>
+
+<p>So the other day I was trying to get a <strong>Python object as output from an LLM</strong>. Let’s assume, I wanted it to give me a <code class="language-plaintext highlighter-rouge">Person(name, age, email)</code> object instead of plain text.
+I started with a simple technique to achieve this using Langchain’s tool calling API.</p>
+
+<h2 id="function-calling">Function Calling</h2>
+
+<p>First, we define the function that will receive structured arguments:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">tool</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+
+<span class="o">@</span><span class="n">tool</span>
+<span class="k">def</span> <span class="nf">create_person</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"Created person object: </span><span class="si">{</span><span class="n">person</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<p>Wire it up to AWS Bedrock:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_aws</span> <span class="kn">import</span> <span class="n">ChatBedrockConverse</span>
+<span class="kn">from</span> <span class="nn">langchain_core.messages</span> <span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">FunctionMessage</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatBedrockConverse</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s">"anthropic.claude-3-5-sonnet-20240620-v1:0"</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">region_name</span><span class="o">=</span><span class="s">'us-east-1'</span>
+<span class="p">)</span>
+
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s">"Create a person with name Alice, age 30, email alice@example.com"</span><span class="p">)]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">create_person</span><span class="p">],</span> <span class="n">tool_choice</span><span class="o">=</span><span class="s">"auto"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">tool_calls</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">tool_calls</span><span class="p">:</span>
+        <span class="n">tool_output</span> <span class="o">=</span> <span class="n">create_person</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">tool_call</span><span class="p">[</span><span class="s">"args"</span><span class="p">])</span>
+        <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">FunctionMessage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">tool_call</span><span class="p">[</span><span class="s">"name"</span><span class="p">],</span> <span class="n">content</span><span class="o">=</span><span class="n">tool_output</span><span class="p">))</span>
+        <span class="n">final_response</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">final_response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Created person object: Person(name='Alice', age=30, email='alice@example.com')
+</code></pre></div></div>
+
+<p>It worked. But, this is just an example. The actual object I had in mind was way more complex and had a nested structure. It felt like a lot of work for something this simple.
+Turns out, LangChain provides us with a nifty trick to do this. The best part about this approach is that you can enforce types using <a href="https://docs.pydantic.dev/latest/">Pydantic</a> in this method using a wrapper that was built on top of it.</p>
+
+<hr />
+
+<h2 id="structured-output">Structured Output</h2>
+
+<p>LangChain has a method called: <code class="language-plaintext highlighter-rouge">with_structured_output()</code>. You can just define a class that extends the basemodel of the Langchain Pydantic module.</p>
+
+<p>Define the expected structure:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Name of the person"</span><span class="p">)</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Age of the person"</span><span class="p">)</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Email address"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Use structured output:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">llm</span> <span class="o">=</span> <span class="n">ChatBedrockConverse</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s">"anthropic.claude-3-5-sonnet-20240620-v1:0"</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">region_name</span><span class="o">=</span><span class="s">'us-east-1'</span>
+<span class="p">)</span>
+<span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">Person</span><span class="p">,</span> <span class="n">include_raw</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">structured_llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"Create a person with name Alice, age 30, and email alice@example.com"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'parsed'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>And it’s as simple as that!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Person(name='Alice', age=30, email='alice@example.com')
+</code></pre></div></div>
+
+<hr />
+
+<p>If you check the model invocation logs, you’ll see that the tool calling was done internally to achieve this. I assume it’s somewhat similar but a more sophisticated version of what I tried to do initially.</p>
+
+<p>Here is the link to the Documentation: <a href="https://python.langchain.com/docs/concepts/structured_outputs/">Link</a></p>
+
+<h2 id="when-should-you-use-what">When Should You Use What?</h2>
+<p>If you need the model to actually trigger real logic (like saving to a database or calling an API), go with function calling.
+If you just want structured data, function calling is probably overkill — structured output is way cleaner.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/miniblogs/structured_outputs_langchain_blog/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://0.0.0.0:4000/miniblogs/caching_mini_blog/" class="pagination--pager" title="Caching your Embeddings - Memory Optimization
+">Previous</a>
+    
+    
+      <a href="http://0.0.0.0:4000/miniblogs/app_inference_profiles/" class="pagination--pager" title="Application Inference Profiles - Tracking costs in Amazon Bedrock
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="http://github.com/gauravhoskote"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://0.0.0.0:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2025 Gaurav Hoskote, Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
+  Site last updated 2025-07-25
+</div>
+
+      </footer>
+    </div>
+
+    <script src="http://0.0.0.0:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,543 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>AWS Step Functions - Orchestrating Your Workflows in the Cloud - Gaurav Hoskote</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Gaurav Hoskote">
+<meta property="og:title" content="AWS Step Functions - Orchestrating Your Workflows in the Cloud">
+
+
+  <link rel="canonical" href="http://0.0.0.0:4000/miniblogs/step_functions/">
+  <meta property="og:url" content="http://0.0.0.0:4000/miniblogs/step_functions/">
+
+
+
+  <meta property="og:description" name="description" content="personal description">
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-08-09T00:00:00+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Gaurav Hoskote",
+      "url" : "http://0.0.0.0:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://0.0.0.0:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Gaurav Hoskote Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="57x57" href="http://0.0.0.0:4000/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="60x60" href="http://0.0.0.0:4000/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="72x72" href="http://0.0.0.0:4000/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="76x76" href="http://0.0.0.0:4000/images/apple-touch-icon-76x76.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="114x114" href="http://0.0.0.0:4000/images/apple-touch-icon-114x114.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="120x120" href="http://0.0.0.0:4000/images/apple-touch-icon-120x120.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="144x144" href="http://0.0.0.0:4000/images/apple-touch-icon-144x144.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="152x152" href="http://0.0.0.0:4000/images/apple-touch-icon-152x152.png?v=M44lzPylqQ">
+<link rel="apple-touch-icon" sizes="180x180" href="http://0.0.0.0:4000/images/apple-touch-icon-180x180.png?v=M44lzPylqQ">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-32x32.png?v=M44lzPylqQ" sizes="32x32">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
+<link rel="icon" type="image/png" href="http://0.0.0.0:4000/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
+<link rel="manifest" href="http://0.0.0.0:4000/images/manifest.json?v=M44lzPylqQ">
+<link rel="mask-icon" href="http://0.0.0.0:4000/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://0.0.0.0:4000/images/mstile-144x144.png?v=M44lzPylqQ">
+<meta name="msapplication-config" content="http://0.0.0.0:4000/images/browserconfig.xml?v=M44lzPylqQ">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/academicons.css"/>
+
+
+<!-- Support for MatJax -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://0.0.0.0:4000/">Gaurav Hoskote</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/portfolio/">Projects</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/year-archive/">Blog Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/cv/">CV</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://0.0.0.0:4000/miniblogs/">Code & Mini Blogs</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://0.0.0.0:4000/images/dp.jpeg" class="author__avatar" alt="Gaurav Hoskote">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Gaurav Hoskote</h3>
+    
+    <p class="author__bio">AI/ML Data Engineer at UOPX | Ex-DHL | Ex-Phonepe | Ex-HSBC.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fa-solid fa-location-dot icon-pad-right" aria-hidden="true"></i>Tempe, AZ, USA.</li>
+      
+      
+      
+      
+        <li><a href="mailto:gaurav.hoskote@gmail.com"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+            
+      
+      
+      
+      
+                              
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/gauravhoskote"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>Github</a></li>
+      
+      
+        <li><a href="https://kaggle.com/gauravhoskote"><i class="fab fa-fw fa-kaggle icon-pad-right" aria-hidden="true"></i>Kaggle</a></li>
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+      
+      
+            
+      
+                  
+                  
+      
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/gauravhoskote"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+      
+        <li><a href="https://medium.com/@gaurav_hoskote"><i class="fab fa-fw fa-medium icon-pad-right" aria-hidden="true"></i>Medium</a></li>
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+        <li><a href="https://www.youtube.com/@gauravhoskote8609"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>YouTube</a></li>
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AWS Step Functions - Orchestrating Your Workflows in the Cloud">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="August 09, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">AWS Step Functions - Orchestrating Your Workflows in the Cloud
+</h1>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-08-09T00:00:00+00:00">August 09, 2025</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>When you’re building modern cloud applications, there’s often a need to stitch together multiple AWS services and tasks into a single, reliable flow. AWS Step Functions is Amazon’s serverless orchestration service that lets you do exactly that — without writing glue code or worrying about scaling.</p>
+
+<hr />
+
+<h2 id="what-is-aws-step-functions">What is AWS Step Functions?</h2>
+
+<p>AWS Step Functions is a fully managed workflow orchestration service. It allows you to coordinate multiple AWS services into serverless workflows, making it easier to build and manage complex applications.</p>
+
+<p>You define workflows as <strong>state machines</strong>, where each step (or <em>state</em>) performs a specific task — like invoking a Lambda function, starting a Glue job, or running an ECS task.</p>
+
+<p>The key benefits include:</p>
+<ul>
+  <li><strong>No servers to manage</strong> — it’s serverless.</li>
+  <li><strong>Visual workflow editor</strong> to easily design and debug.</li>
+  <li><strong>Automatic error handling and retries</strong>.</li>
+  <li><strong>Built-in integrations</strong> with over 200 AWS services.</li>
+</ul>
+
+<hr />
+
+<h2 id="what-can-you-use-it-for">What Can You Use It For?</h2>
+
+<p>AWS Step Functions is widely used for:</p>
+<ol>
+  <li><strong>Data Processing Pipelines</strong> — chaining together ETL jobs, transformations, and storage operations.</li>
+  <li><strong>Machine Learning Workflows</strong> — automating training, evaluation, and deployment steps.</li>
+  <li><strong>Event-Driven Applications</strong> — responding to incoming events with orchestrated actions.</li>
+  <li><strong>Long-Running Business Processes</strong> — approvals, multi-step user workflows, etc.</li>
+</ol>
+
+<hr />
+
+<h2 id="two-flavors-standard-vs-express">Two Flavors: Standard vs. Express</h2>
+
+<p>AWS Step Functions comes in <strong>two execution modes</strong>:</p>
+
+<ul>
+  <li><strong>Standard Workflows</strong>
+    <ul>
+      <li>Best for long-running workflows (up to 1 year).</li>
+      <li>Durable and can handle complex retries and human approval steps.</li>
+      <li>Charged per state transition.</li>
+    </ul>
+  </li>
+  <li><strong>Express Workflows</strong>
+    <ul>
+      <li>Designed for high-volume, short-duration workflows (up to 5 minutes).</li>
+      <li>Lower latency and cheaper for short-lived workloads.</li>
+      <li>Charged per request and execution duration.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="pricing-basics">Pricing Basics</h2>
+
+<p>Pricing depends on the workflow type:</p>
+<ul>
+  <li><strong>Standard</strong>: pay per state transition.</li>
+  <li><strong>Express</strong>: pay per request and execution time.</li>
+</ul>
+
+<p>Always choose the type based on your workload characteristics.</p>
+
+<hr />
+
+<p>To make things easy, I have already created a Terraform repository that can be used to create AWS Step Functions.</p>
+
+<p>📦 <strong>Repository link:</strong> <a href="https://github.com/gauravhoskote/aws-step-functions">aws-step-functions</a></p>
+
+<hr />
+
+<h2 id="example-calling-the-step-functions-module">Example: Calling the Step Functions Module</h2>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span> <span class="s2">"hello_world_stepfunction"</span> <span class="p">{</span>
+   <span class="nx">source</span>               <span class="p">=</span> <span class="s2">"./modules/stpfnc"</span>
+   <span class="nx">name</span>                 <span class="p">=</span> <span class="s2">"hello-world-stepfunction"</span>
+   <span class="nx">role_arn</span>             <span class="p">=</span> <span class="nx">aws_iam_role</span><span class="err">.</span><span class="nx">stepfn_role</span><span class="err">.</span><span class="nx">arn</span>
+   <span class="nx">stepfunc_type</span>        <span class="p">=</span> <span class="s2">"STANDARD"</span>
+   <span class="c1"># log_group_arn       = aws_cloudwatch_log_group.stepfn_logs.arn</span>
+   <span class="nx">definition_file_path</span> <span class="p">=</span> <span class="s2">"statemachines/sample_hello_world.json"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>source</strong></td>
+      <td>The path to the Terraform module. In this case, <code class="language-plaintext highlighter-rouge">./modules/stpfnc</code> points to the locally stored Step Functions module within your repository.</td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td>The name of the Step Function state machine. This must be unique within your AWS account. Here it is set to <code class="language-plaintext highlighter-rouge">hello-world-stepfunction</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>role_arn</strong></td>
+      <td>The ARN of the IAM role that AWS Step Functions will use to execute the state machine. This role must have the required permissions to invoke resources in your workflow.</td>
+    </tr>
+    <tr>
+      <td><strong>stepfunc_type</strong></td>
+      <td>The type of Step Function to create. Possible values are <code class="language-plaintext highlighter-rouge">"STANDARD"</code> (long-running, durable workflows) or <code class="language-plaintext highlighter-rouge">"EXPRESS"</code> (short-lived, high-throughput workflows).</td>
+    </tr>
+    <tr>
+      <td><strong>log_group_arn</strong> <em>(optional)</em></td>
+      <td>The ARN of the CloudWatch Log Group to which execution history logs will be sent. This is currently commented out in the example.</td>
+    </tr>
+    <tr>
+      <td><strong>definition_file_path</strong></td>
+      <td>The relative path to the JSON or Amazon States Language file that defines the workflow steps. In this example, it points to <code class="language-plaintext highlighter-rouge">"statemachines/sample_hello_world.json"</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Below is an example of what the json files in the ‘statemachines’ directory would look like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "Comment": "Hello World example",
+  "StartAt": "Hello",
+  "States": {
+    "Hello": {
+      "Type": "Pass",
+      "Result": "Hello, World!",
+      "End": true
+    }
+  }
+}
+</code></pre></div></div>
+
+<p>Here is the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Syntax</a> for the Amazon States Language which will help you write more complex workflows.</p>
+
+<h2 id="my-take">My Take</h2>
+<p>Whenever you are able to model your problem into a state machine, you should seriously consider using Step Functions.</p>
+
+<p>The first thing that came to my mind was the state machine I saw when I was working at PhonePe (a payments company in India). The transaction flow in every payments app follows a flow of the defined state machine:</p>
+
+<p>Init → transaction is initiated.</p>
+
+<p>In Progress → payment is being processed.</p>
+
+<p>Cancelled or Completed → based on whether the fulfilment happened successfully or not.</p>
+
+<p>Reconciliation → final step for financial accuracy.</p>
+
+<p>This perfectly aligns with the philosophy of Step Functions—clearly defined states, transitions, and outcomes, all managed in a reliable, observable way.</p>
+
+<p>I was reminded of this recently when working on a Glue job that started AWS Transcribe jobs in an async manner, with all resulting metadata (one metadata file for all the transcripts created by that Glue job) stored in S3. My plan was to use Step Functions to process these transcripts, orchestrating each step from retrieving the metadata to performing further analysis.</p>
+
+<p>However, I hit a roadblock. Even though the S3 event could easily trigger a Lambda whenever a new transcript was uploaded to S3, the Lambda had no context about the bigger picture—it didn’t know where exactly to pick the metadata file from or what specifically to look for inside it. Without that context traveling along the workflow, the orchestration became harder to manage.</p>
+
+<p>That’s when it really clicked for me — <strong>Step Functions shine when you design your workflow so that context moves with execution</strong>, either passed explicitly between states or retrieved deterministically at each step. Without that, you just end up with triggers firing blindly, and your state machine loses its true advantage.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/miniblogs/step_functions/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/miniblogs/step_functions/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/miniblogs/step_functions/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://0.0.0.0:4000/miniblogs/app_inference_profiles/" class="pagination--pager" title="Application Inference Profiles - Tracking costs in Amazon Bedrock
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="http://github.com/gauravhoskote"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://0.0.0.0:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2025 Gaurav Hoskote, Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
+  Site last updated 2025-08-09
+</div>
+
+      </footer>
+    </div>
+
+    <script src="http://0.0.0.0:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

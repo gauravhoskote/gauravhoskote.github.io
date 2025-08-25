@@ -19,7 +19,7 @@
 
 
 
-<title>Terms and Privacy Policy - Gaurav Hoskote</title>
+<title>AWS Glue ETL jobs - Gaurav Hoskote</title>
 
 
 
@@ -29,13 +29,15 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Gaurav Hoskote">
-<meta property="og:title" content="Terms and Privacy Policy">
+<meta property="og:title" content="AWS Glue ETL jobs">
 
 
-  <link rel="canonical" href="http://0.0.0.0:4000/terms/">
-  <meta property="og:url" content="http://0.0.0.0:4000/terms/">
+  <link rel="canonical" href="http://0.0.0.0:4000/miniblogs/glue_etl_blog/">
+  <meta property="og:url" content="http://0.0.0.0:4000/miniblogs/glue_etl_blog/">
 
 
+
+  <meta property="og:description" name="description" content="personal description">
 
 
 
@@ -48,6 +50,9 @@
 
 
 
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-08-25T00:00:00+00:00">
 
 
 
@@ -262,76 +267,107 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Terms and Privacy Policy">
+    <meta itemprop="headline" content="AWS Glue ETL jobs">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="August 25, 2025">
     
-    
-    <meta itemprop="dateModified" content="June 06, 2016">
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Terms and Privacy Policy
+          <h1 class="page__title" itemprop="headline">AWS Glue ETL jobs
 </h1>
           
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2016-06-06">June 06, 2016</time></p>
         
         
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-08-25T00:00:00+00:00">August 25, 2025</time></p>
             
         </header>
       
 
       <section class="page__content" itemprop="text">
-        
-<aside class="sidebar__right">
-<nav class="toc">
-    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
-<ul class="toc__menu" id="markdown-toc">
-  <li><a href="#privacy-policy" id="markdown-toc-privacy-policy">Privacy Policy</a>    <ul>
-      <li><a href="#log-files" id="markdown-toc-log-files">Log Files</a></li>
-      <li><a href="#cookies-and-web-beacons" id="markdown-toc-cookies-and-web-beacons">Cookies and Web Beacons</a>        <ul>
-          <li><a href="#google-analytics" id="markdown-toc-google-analytics">Google Analytics</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+        <h1 id="building-scalable-etl-pipelines-with-aws-glue-and-terraform">Building Scalable ETL Pipelines with AWS Glue and Terraform</h1>
 
-  </nav>
-</aside>
+<p>Data pipelines are the backbone of modern data platforms. With AWS Glue, you can run fully managed ETL (Extract, Transform, Load) jobs without worrying about provisioning servers or managing clusters. And with Terraform modules, you can codify, version, and automate your Glue jobs for reliable deployment.</p>
 
-<h2 id="privacy-policy">Privacy Policy</h2>
-
-<p>The privacy of my visitors is extremely important. This Privacy Policy outlines the types of personal information that is received and collected and how it is used.</p>
-
-<p>First and foremost, I will never share your email address or any other personal information to anyone without your direct consent.</p>
-
-<h3 id="log-files">Log Files</h3>
-
-<p>Like many other websites, this site uses log files to help learn about when, from where, and how often traffic flows to this site. The information in these log files include:</p>
+<p>In this blog, we’ll walk through two types of Glue jobs implemented using Terraform in the following repo: <a href="https://github.com/gauravhoskote/glue_etl_terraform/">Code Repository</a></p>
 
 <ul>
-  <li>Internet Protocol addresses (IP)</li>
-  <li>Types of browser</li>
-  <li>Internet Service Provider (ISP)</li>
-  <li>Date and time stamp</li>
-  <li>Referring and exit pages</li>
-  <li>Number of clicks</li>
+  <li><strong>Glue ETL Job (Spark-based)</strong></li>
+  <li><strong>Glue Shell Job (Lightweight Python/Unix tasks)</strong></li>
 </ul>
 
-<p>All of this information is not linked to anything that is personally identifiable.</p>
+<hr />
 
-<h3 id="cookies-and-web-beacons">Cookies and Web Beacons</h3>
+<h2 id="1-glue-etl-job-module-spark-based">1. Glue ETL Job Module (Spark-based)</h2>
 
-<p>When you visit this site &#8220;convenience&#8221; cookies are stored on your computer when you submit a comment to help you log in faster to <a href="http://disqus.com">Disqus</a> the next time you leave a comment.</p>
+<p>This module provisions a standard Glue job that runs on top of Apache Spark. It’s best for heavy-duty data transformations, such as joining multiple datasets, cleaning large-scale raw data, or writing to data warehouses like Redshift, Snowflake, or S3 in Parquet format.</p>
 
-<p>Third-party advertisers may also place and read cookies on your browser and/or use web beacons to collect information. This site has no access or control over these cookies. You should review the respective privacy policies on any and all third-party ad servers for more information regarding their practices and how to opt-out.</p>
+<h3 id="key-parameters-explained">Key Parameters Explained</h3>
 
-<p>If you wish to disable cookies, you may do so through your web browser options. Instructions for doing so can be found on the specific web browsers&#8217; websites.</p>
+<ul>
+  <li><strong>glue_version</strong> → Defines the runtime (e.g., 4.0 for Spark 3).</li>
+  <li><strong>admin_bucket</strong> → S3 bucket where Glue logs, scripts, and artifacts are stored.</li>
+  <li><strong>role_arn</strong> → IAM role with permissions to access data sources/destinations.</li>
+  <li><strong>job_name</strong> → Logical identifier for the Glue job.</li>
+  <li><strong>connections</strong> → Any JDBC or networking connections Glue requires.</li>
+  <li><strong>deploy_key &amp; path_to_script</strong> → The Python ETL script (stored in S3 + local path for development).</li>
+  <li><strong>number_of_workers &amp; worker_type</strong> → Defines compute resources (e.g., Standard vs. G.1X).</li>
+  <li><strong>timeout</strong> → Job execution limit (e.g., 14400 sec = 4 hours).</li>
+  <li><strong>default_arguments</strong> → Extra Glue configs (bookmarks, job parameters, etc.).</li>
+  <li><strong>repository &amp; created_by</strong> → Metadata tags for governance.</li>
+</ul>
 
-<h4 id="google-analytics">Google Analytics</h4>
+<p><strong>Use case</strong>: Transforming terabytes of clickstream data from S3 into partitioned Parquet datasets for analytics.</p>
 
-<p>Google Analytics is a web analytics tool I use to help understand how visitors engage with this website. It reports website trends using cookies and web beacons without identifying individual visitors. You can read <a href="http://www.google.com/analytics/learn/privacy.html">Google Analytics Privacy Policy</a>.</p>
+<hr />
+
+<h2 id="2-glue-shell-job-module-lightweight-jobs">2. Glue Shell Job Module (Lightweight jobs)</h2>
+
+<p>Sometimes, you don’t need a full Spark cluster to run your task. Glue Shell jobs are perfect for lightweight Python or Unix shell scripts, such as invoking APIs, loading data into Postgres, or preprocessing small datasets.</p>
+
+<h3 id="key-parameters-explained-1">Key Parameters Explained</h3>
+
+<ul>
+  <li><strong>admin_bucket</strong> → Same as above, used for logs and artifacts.</li>
+  <li><strong>role_arn</strong> → Execution role for AWS access.</li>
+  <li><strong>job_name</strong> → Identifier for this shell job.</li>
+  <li><strong>deploy_key &amp; path_to_script</strong> → Python/shell script location.</li>
+  <li><strong>max_capacity</strong> → Minimum resource allocation (as low as 0.0625 DPU).</li>
+  <li><strong>connections</strong> → Optional database/network connections.</li>
+  <li><strong>default_arguments</strong> → Pass dependencies (e.g., <code class="language-plaintext highlighter-rouge">"--additional-python-modules" = "psycopg2-binary"</code> for Postgres).</li>
+  <li><strong>created_by</strong> → Audit metadata.</li>
+</ul>
+
+<p><strong>Use case</strong>: A small Python job that extracts data from Postgres nightly and writes it to S3 before being processed by a larger Spark ETL job.</p>
+
+<hr />
+
+<h2 id="3-using-the-modules">3. Using the Modules</h2>
+
+<p>The two modules serve different purposes and can be used independently based on your workload:</p>
+
+<ul>
+  <li><strong>Glue Shell Job</strong> → Best for lightweight tasks such as API calls, database extracts, or running small Python scripts with minimal infrastructure.</li>
+  <li><strong>Glue ETL Job (Spark-based)</strong> → Suited for large-scale transformations, joins, and heavy ETL workloads where distributed compute is required.</li>
+</ul>
+
+<p>Both modules follow the same design principles:</p>
+
+<ul>
+  <li>Parameterized inputs (<code class="language-plaintext highlighter-rouge">job_name</code>, <code class="language-plaintext highlighter-rouge">worker_type</code>, <code class="language-plaintext highlighter-rouge">path_to_script</code>, etc.)</li>
+  <li>Reusable Terraform definitions</li>
+  <li>Consistent metadata tagging (<code class="language-plaintext highlighter-rouge">repository</code>, <code class="language-plaintext highlighter-rouge">created_by</code>) for governance</li>
+</ul>
+
+<p>This approach lets you mix and match Glue jobs based on your needs without being forced into a specific sequence. Some workflows may only require a Spark-based ETL job, while others may only need a lightweight shell job — or you might use both in different contexts within the same data platform.</p>
+
+<hr />
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>Terraform makes Glue ETL jobs reproducible and scalable, while separating concerns between lightweight shell jobs and full Spark ETL jobs. Whether you’re building a real-time ingestion pipeline or nightly batch processing system, this modular approach helps you design pipelines that are maintainable, cost-optimized, and cloud-native.</p>
 
 
         
@@ -350,8 +386,30 @@
 
       
 
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://0.0.0.0:4000/miniblogs/glue_etl_blog/" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://0.0.0.0:4000/miniblogs/glue_etl_blog/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0.0.0.0:4000/miniblogs/glue_etl_blog/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
       
 
+
+  <nav class="pagination">
+    
+      <a href="http://0.0.0.0:4000/miniblogs/step_functions/" class="pagination--pager" title="AWS Step Functions - Orchestrating Your Workflows in the Cloud
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
 
     </div>
 

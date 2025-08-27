@@ -18,7 +18,7 @@ Education
 Work experience
 ======
 * Aug 2024 - Present: AI/ML Data Engineer at University of Phoenix
-  * Working on recommender systems and channel preference models at UOP.
+  * Developing Retrieval-Augmented Generation (RAG) pipelines and curating domain-specific knowledge bases for improved information retrieval and contextual response generation.
 
 * June 2023 - April 2024: Software Engineering Intern at DHL Global Forwarding
   * Data Analytics and Visualization Pipelines: Designed an ETL pipeline that boosted usage of internal tools by 22% using SQL stored procedures and Qlik Sense.
